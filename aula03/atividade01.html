@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="base.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Atividade 01</h1>
+  <p style="text-align:justify">Utilize como base este
+    exemplo da Mozilla <a target="_blank"
+      href="https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Building_blocks/conditionals#else_if">LinK</a>
+    para montar uma tela onde o usuário escolhe o clima atual a partir de uma lista de opções. Porém, diferente da
+    solução
+    apresentada no exemplo, você deve exibir mensagens para o usuário de acordo com a opção escolhida somente ao tentar
+    submeter o formulário (no código do exemplo isso acontece apenas ao mudar a opção selecionada).</p>
+  <form id="form">
+
+    <input type="text" name="" id="tempo" placeholder="Digite o clima">
+    <button>Verificar</button>
+  </form>
+  <div id="result"></div>
+
+
+  <script>
+
+    const form = document.getElementById('form');
+    const result = document.getElementById('result')
+
+
+    form.addEventListener('submit', (e) => {
+      const tempoInput = document.getElementById('tempo').value
+      e.preventDefault()
+      let tempoformatado = tempoInput.toLowerCase().trim()
+
+
+      if (tempoformatado == 'ensolarado') {
+        result.innerHTML = '<h1>☀</h1> <br> <p>Hoje está bom e ensolarado lá fora. Use shorts! Vá à praia ou ao parque e tome um sorvete.</p>'
+      }
+      else if (tempoformatado == 'chuvoso') {
+        result.innerHTML = '<h1>🌧</h1> <br> <p> A chuva está caindo lá fora,pegue uma capa de chuva e um guarda-chuva, e não fique fora por muito tempo.</p>'
+      }
+      else if (tempoformatado == 'nevando') {
+        result.innerHTML = '<h1>❄</h1> <br> <p>A neve está caindo - está congelando! Melhor ficar com uma xícara de chocolate quente ou construir um boneco de neve.</p>'
+      }
+      else if (tempoformatado == 'nublado') {
+        result.innerHTML = '<h1>🌥</h1> <br> <p> Não está chovendo, mas o céu está cinza e escuro; pode virar a qualquer minuto, então leve uma capa de chuva para o caso.</p>'
+      }
+      else {
+        result.innerHTML = '<h1>❌</h1> <br> <p>Clima invalido</p>'
+      }
+
+      document.getElementById('tempo').value = ''
+    })
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="base.css">
+</head>
+
+<body>
+    <h1>Atividade 03</h1>
+    <p>Criar um algoritmo para calcular a formula de baskara </p>
+    <form id="form">
+        <input type="number" id="valorA">
+        <input type="number" id="valorB">
+        <input type="number" id="valorC">
+        <button id="botao">Calcular</button>
+    </form>
+    <div id="result">
+    </div>
+
+    <script>
+        const formElement = document.getElementById('form')
+        const resElement = document.getElementById('result')
+
+        formElement.addEventListener('submit', onSubmit);
+
+
+        function onSubmit(e) {
+            e.preventDefault();
+            result.innerHTML = ''
+            const valorAElement = parseFloat(document.getElementById('valorA').value)
+            const valorBElement = parseFloat(document.getElementById('valorB').value)
+            const valorCElement = parseFloat(document.getElementById('valorC').value)
+
+            if (isNaN(valorAElement) || isNaN(valorBElement) || isNaN(valorCElement)) {
+                result.innerHTML = `<h3>Verifique os campos</h3>`
+                return
+            }
+
+            let delta = (valorAElement * valorBElement) - 4 * valorAElement * valorCElement;
+
+            if (delta < 0) {
+
+                result.innerHTML = `<h3>Delta negativo não contem raízes</h3>`
+                clearField()
+                return
+            }
+
+
+            let coeficiente1 = (-valorBElement + Math.sqrt(delta)) / (2 * valorAElement);
+            let coeficiente2 = (-valorBElement - Math.sqrt(delta)) / (2 * valorAElement);
+            createBox(coeficiente1, coeficiente2, delta);
+            clearField()
+
+
+        }
+
+
+        function createBox(x1, x2, delta) {
+
+            const boxElement = document.createElement('div')
+            const deltaElement = document.createElement('p')
+            const x1Element = document.createElement('p')
+            const x2Element = document.createElement('p')
+
+            boxElement.setAttribute('class', 'box')
+            resElement.appendChild(boxElement)
+
+            deltaElement.innerText = `Delta: ${delta.toFixed(2)}`
+            x1Element.innerText = `X1: ${x1.toFixed(2)}`
+            x2Element.innerText = `X2: ${x2.toFixed(2)}`
+
+            boxElement.appendChild(deltaElement)
+            boxElement.appendChild(x1Element)
+            boxElement.appendChild(x2Element)
+        }
+
+        function clearField() {
+            document.getElementById('valorA').value = '';
+            document.getElementById('valorB').value = '';
+            document.getElementById('valorC').value = '';
+        }
+
+    </script>
+</body>
+
+</html>

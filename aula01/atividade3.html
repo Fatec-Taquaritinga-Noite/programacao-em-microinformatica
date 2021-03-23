@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    let valorA = parseFloat(prompt('Digite o valor de A: '))
+    let valorB = parseFloat(prompt('Digite o valor de B: '))
+    let valorC = parseFloat(prompt('Digite o valor de C: '))
+    
+    let delta = (valorB * valorB) - (4 * valorA * valorC);
+    
+    document.write("valor de delta =>"  + delta)
+    
+    if (delta < 0) {
+      document.write("Para delta negativo, não existem raízes reais");
+    } 
+    else {
+    
+      document.write("Para delta positivo, raízes")
+    
+      let coeficiente1 = (-valorB + Math.sqrt(delta)) / (2 * valorA);
+      let coeficiente2 = (-valorB - Math.sqrt(delta)) / (2 * valorA); 
+    
+      document.write(`CoeficienteI ${coeficiente1} CoeficienteII  ${coeficiente2}`)
+    }
+    </script>
+</body>
+</html>

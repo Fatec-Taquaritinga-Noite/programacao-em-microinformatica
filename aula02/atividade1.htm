@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="base.css">
+</head>
+
+<body>
+    <h1>Atividade 01</h1>
+    <p>Criar um algoritmo para calcular a formula de baskara </p>
+    <form id="form">
+        <input type="number" id="valorA">
+        <input type="number" id="valorB">
+        <button id="botao">Calcular</button>
+    </form>
+    <div id="result">
+    </div>
+
+
+
+
+    <script>
+
+        const buttonElement = document.getElementById('botao')
+        const formElement = document.getElementById('form')
+        const resElement = document.getElementById('result')
+
+        formElement.addEventListener('submit', onSubmit);
+
+
+        function onSubmit(e) {
+            e.preventDefault();
+            result.innerText=''
+            const valorAElement = parseFloat(document.getElementById('valorA').value)
+            const valorBElement = parseFloat(document.getElementById('valorB').value)
+            verificarInput(valorAElement, valorBElement)
+        }
+
+        function verificarInput(valorA, valorB) {
+            console.log(valorA, valorB)
+            if (isNaN(valorA) || isNaN(valorB)) {
+                result.innerHTML = `Verifique os campos`
+                setTimeout(() => {
+                    result.innerHTML = ''
+                }, 4000)
+            }
+            else {
+                calc(valorA, valorB);
+            }
+
+        }
+
+
+        function calc(valorA, valorB) {
+            let soma = valorA + valorB;
+            let sub = valorA - valorB;
+            let mult = valorA * valorB;
+            let div = valorA / valorB;
+            let resto = valorA % valorB;
+
+            createBox(soma, sub, mult, div, resto);
+
+            clearField()
+
+
+
+        }
+
+
+        function createBox(soma, sub, mult, div, resto) {
+
+            const boxElement = document.createElement('div')
+            const somaElement = document.createElement('p')
+            const subElement = document.createElement('p')
+            const multElement = document.createElement('p')
+            const divElement = document.createElement('p')
+            const restoElement = document.createElement('p')
+
+            boxElement.setAttribute('class', 'box')
+            resElement.appendChild(boxElement)
+
+            somaElement.innerText = `Soma: ${soma}`
+            subElement.innerText = `Subtração: ${sub}`
+            multElement.innerText = `multiplicação: ${mult}`
+            divElement.innerText = `Divisão: ${div}`
+            restoElement.innerText = `Resto: ${resto}`
+
+            boxElement.appendChild(somaElement)
+            boxElement.appendChild(subElement)
+            boxElement.appendChild(multElement)
+            boxElement.appendChild(divElement)
+            boxElement.appendChild(restoElement)
+
+
+        }
+
+        function clearField() {
+            document.getElementById('valorA').value = '';
+            document.getElementById('valorB').value = '';
+
+        }
+
+
+    </script>
+</body>
+
+</html>
